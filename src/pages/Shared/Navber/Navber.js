@@ -60,7 +60,7 @@ const Navber = () => {
                                 <Link >Home</Link>
                             </li>
                             <li className="text-white hover:text-indigo-200">
-                                <Link >Blog</Link>
+                                <Link to={'/blogs'} >Blog</Link>
                             </li>
                             <li className="text-white hover:text-indigo-200">
                                 <Link >About US</Link>
