@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import {FcGoogle } from 'react-icons/fc';
+import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '../../Context/AuthProvider';
+import carCover from '../../assets/cover/car-cover.jpg';
 
 
 const Signup = () => {
@@ -26,6 +27,7 @@ const Signup = () => {
             .catch(err => console.error(err));
     }
 
+    // email and password create a new account
     const handleSignUp = (data) => {
         console.log(data);
         setSignUpError('')
@@ -52,12 +54,15 @@ const Signup = () => {
     }
 
     return (
-        <div className='h-[800px] flex justify-center items-center'>
+        <section className='py-16 flex justify-center items-center'
+        style={{
+            background: `url(${carCover})`
+        }}>
             <div className='w-96 p-7'>
-                <h2 className='text-2xl font-bold text-center'>Sign Up</h2>
+                <h2 className='text-2xl font-bold text-center text-white'>Sign Up</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
                     <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text">Name</span></label>
+                        <label className="label"> <span className="label-text text-white">Name</span></label>
                         <input type="text"
                             {...register("name", {
                                 required: "Name is required"
@@ -69,7 +74,7 @@ const Signup = () => {
 
                     </div>
                     <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text">Email</span></label>
+                        <label className="label"> <span className="label-text text-white">Email</span></label>
                         <input type="email"
                             {...register("email", {
                                 required: true
@@ -81,7 +86,7 @@ const Signup = () => {
 
                     </div>
                     <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text">Password</span></label>
+                        <label className="label"> <span className="label-text text-white">Password</span></label>
                         <input type="password"
                             {...register("password", {
                                 required: "Password is required",
@@ -101,16 +106,17 @@ const Signup = () => {
                         }
                     </div>
                 </form>
-                <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
-                <div className="divider">OR</div>
+                <p className='text-white'>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
+                <div className="divider text-white">OR</div>
                 <button
                     onClick={handleGoogleLogIn}
                     className='btn btn-outline w-full'
                 >
                     <FcGoogle className='text-2xl mx-2'></FcGoogle>
-                     Google Login</button>
+                   <span className='text-blue-600 hover:text-white'> Google Login</span>
+                </button>
             </div>
-        </div>
+        </section>
     );
 };
 

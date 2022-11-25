@@ -11,7 +11,7 @@ const Footer = () => {
                         src="https://i.ibb.co/YWY7JSk/Car-Logo-PNG-Transparent.png" alt="" />
                     <p>ACME Industries Ltd.<br />Providing reliable tech since 2022</p>
                 </div>
-                <div className='text-center flex items-center justify-center mt-10'>
+                <div className='text-center flex items-center justify-center lg:mt-10'>
                     <p>Copyright © 2022 - All right reserved by  resale used products.</p>
                 </div>
                 <div>

@@ -1,10 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
 import { RiCloseCircleLine } from "react-icons/ri";
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const Navber = () => {
     const [navbar, setNavbar] = useState(false);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(err => console.error(err))
+    }
+
+
+    const menuItems = <>
+        <li className="text-white font-medium hover:text-indigo-300">
+            <Link to={'/'} >Home</Link>
+        </li>
+        <li className="text-white font-medium hover:text-indigo-300">
+            <Link to={'/blogs'} >Blog</Link>
+        </li>
+        <li className="text-white font-medium hover:text-indigo-300">
+            <Link >About US</Link>
+        </li>
+        <li className="text-white font-medium hover:text-indigo-300">
+            <Link >Contact US</Link>
+        </li>
+    </>
+
 
     return (
         <nav className="w-full  bg-purple-500 shadow">
@@ -14,9 +39,9 @@ const Navber = () => {
                         <Link className='flex justify-center items-center' to={'/'}>
                             <img className='w-16'
                                 src="https://i.ibb.co/LnfwhdX/car-logo-preview.png" alt="" />
-                                 <h2 className='text-white font-semibold text-xl'>Car Buy&Sale</h2>
+                            <h2 className='text-white font-semibold text-xl'>Car Buy&Sale</h2>
                         </Link>
-                       
+
                         <div className="md:hidden lg:hidden">
                             <button
                                 className="p-2 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -40,49 +65,57 @@ const Navber = () => {
                             }`}
                     >
                         <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                            <li className="text-white hover:text-indigo-200">
-                                <Link to={'/'} >Home</Link>
-                            </li>
-                            <li className="text-white hover:text-indigo-200">
-                                <Link to={'/blogs'} >Blog</Link>
-                            </li>
-                            <li className="text-white hover:text-indigo-200">
-                                <Link >About US</Link>
-                            </li>
-                            <li className="text-white hover:text-indigo-200">
-                                <Link >Contact US</Link>
-                            </li>
+                            {menuItems}
                         </ul>
 
                         <div className="space-y-2 md:hidden sm:inline-block">
+                            {user?.uid ?
+                                <button
+                                    className="btn btn-ghost text-white"
+                                    onClick={handleLogOut}
+                                >
+                                    Sign Out
+                                </button>
+                                :
+                                <>
+                                    <Link
+                                        to='/login'
+                                        className="btn btn-ghost w-full text-white"
+                                    >
+                                        Login
+                                    </Link>
+                                    <Link
+                                        to='signup'
+                                        className="btn btn-ghost w-full text-white"
+                                    >
+                                        Sign up
+                                    </Link>
+                                </>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div className="hidden  space-x-2 md:inline-block">
+                    {user?.uid ?
+                        <button
+                            className='btn btn-ghost text-white'
+                            onClick={handleLogOut}>Sign Out</button>
+                        :
+                        <>
                             <Link
                                 to='/login'
-                                className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+                                className=" mx-2 font-medium  hover:text-indigo-300 text-white"
                             >
                                 Login
                             </Link>
                             <Link
                                 to='signup'
-                                className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+                                className="mx-2 font-medium  hover:text-indigo-300 text-white"
                             >
                                 Sign up
                             </Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="hidden mt-3 space-x-2 md:inline-block">
-                    <Link
-                        to='/login'
-                        className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-                    >
-                        Login
-                    </Link>
-                    <Link
-                        to='signup'
-                        className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-                    >
-                        Sign up
-                    </Link>
+                        </>
+                    }
                 </div>
             </div>
         </nav>
