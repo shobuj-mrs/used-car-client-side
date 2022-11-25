@@ -1,50 +1,34 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaBars } from "react-icons/fa";
+import { RiCloseCircleLine } from "react-icons/ri";
 
 const Navber = () => {
     const [navbar, setNavbar] = useState(false);
 
     return (
-        <nav className="w-full mt-4 bg-purple-500 shadow">
+        <nav className="w-full  bg-purple-500 shadow">
             <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                 <div>
-                    <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                        <Link >
-                            <h2 className="text-2xl font-bold text-white">LOGO</h2>
+                    <div className="flex items-center justify-between md:block">
+                        <Link className='flex justify-center items-center' to={'/'}>
+                            <img className='w-16'
+                                src="https://i.ibb.co/LnfwhdX/car-logo-preview.png" alt="" />
+                                 <h2 className='text-white font-semibold text-xl'>Car Buy&Sale</h2>
                         </Link>
-                        <div className="md:hidden">
+                       
+                        <div className="md:hidden lg:hidden">
                             <button
-                                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                                className="p-2 rounded-md outline-none focus:border-gray-400 focus:border"
                                 onClick={() => setNavbar(!navbar)}
                             >
                                 {navbar ? (
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="w-6 h-6 text-white"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                    >
-                                        <path
-                                            fillRule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clipRule="evenodd"
-                                        />
-                                    </svg>
+                                    <RiCloseCircleLine></RiCloseCircleLine>
+
                                 ) : (
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="w-6 h-6 text-white"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth={2}
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M4 6h16M4 12h16M4 18h16"
-                                        />
-                                    </svg>
+                                    <FaBars></FaBars>
+
+
                                 )}
                             </button>
                         </div>
@@ -70,7 +54,7 @@ const Navber = () => {
                             </li>
                         </ul>
 
-                        <div className="mt-3 space-y-2 md:hidden sm:inline-block">
+                        <div className="space-y-2 md:hidden sm:inline-block">
                             <Link
                                 to='/login'
                                 className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
