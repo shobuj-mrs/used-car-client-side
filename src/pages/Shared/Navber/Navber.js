@@ -22,12 +22,11 @@ const Navber = () => {
         <li className="text-white font-medium hover:text-indigo-300">
             <Link to={'/blogs'} >Blog</Link>
         </li>
+
         <li className="text-white font-medium hover:text-indigo-300">
-            <Link >About US</Link>
+            <Link to={'/dashboard'} >Dashboard </Link>
         </li>
-        <li className="text-white font-medium hover:text-indigo-300">
-            <Link >Contact US</Link>
-        </li>
+
     </>
 
 

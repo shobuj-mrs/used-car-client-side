@@ -1,8 +1,10 @@
 import React from 'react';
+import BookingModal from '../BookingModal/BookingModal';
 
 const SingleCar = ({ carDetails }) => {
     const { carName, carCondition, carImg, mobileNumber, email, originalPrice, salePrice, sellerLocation, usesTime } = carDetails;
-
+    const name = carName;
+    const price = salePrice;
     return (
         <div>
             <div className='flex py-5 lg:mx-48 rounded-2xl backdrop-blur-sm shadow-2xl bg-white/30 justify-center items-center'>
@@ -17,12 +19,17 @@ const SingleCar = ({ carDetails }) => {
                     <h3>Posted time: { }</h3>
                     <h3>Seller Email: {email}</h3>
                     <h3>Mobile No : {mobileNumber}</h3>
-                    <label htmlFor="my-modal-3" className="btn">Book Now</label>
+
+                    <label htmlFor="car-book" className="btn">Book Now</label>
 
 
                 </div>
             </div>
-            {/* <BookingModal bookDetails={bookDetails} key={bookDetails._id} ></BookingModal> */}
+            <BookingModal
+                name={name}
+                price={price}
+                key={carDetails._id}
+            ></BookingModal>
         </div>
     );
 };

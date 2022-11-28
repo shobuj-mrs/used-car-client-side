@@ -36,12 +36,14 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast('User created successfully')
+                toast('User created successfully for the buy and sale website ')
                 const userInfo = {
                     displayName: data.name
                 }
                 updateUser(userInfo)
                     .then(() => {
+
+                        saveUser(data.name, data.email, data.role);
                         navigate('/')
                     })
                     .catch(err => console.error(err));
@@ -53,11 +55,28 @@ const Signup = () => {
 
     }
 
+
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // setCreatedUserEmail(email);
+            })
+    }
+
+
     return (
         <section className='py-16 flex justify-center items-center'
-        style={{
-            background: `url(${carCover})`
-        }}>
+            style={{
+                background: `url(${carCover})`
+            }}>
             <div className='w-96 p-7'>
                 <h2 className='text-2xl font-bold text-center text-white'>Sign Up</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
@@ -93,11 +112,22 @@ const Signup = () => {
                                 minLength: { value: 6, message: "Password must be 6 letter long " },
                                 pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must be strong' }
                             })}
-                            className="input input-bordered w-full mb-6 max-w-xs" />
+                            className="input input-bordered w-full mb-3 max-w-xs" />
                         {
                             errors.password && <p className='text-red-500'>{errors.password.message} </p>
                         }
 
+                    </div>
+
+                    <div className="form-control w-full max-w-xs mb-6">
+                        <label className="label"> <span className="label-text text-white ">Select account type</span></label>
+                        <select
+                            {...register("role")}
+                            className=" select select-bordered select-sm w-full max-w-xs">
+                            <option defaultValue>Buyer</option>
+                            <option>Seller</option>
+
+                        </select>
                     </div>
                     <input className='btn btn-accent w-full' value="Sign Up" type="submit" />
                     <div>
@@ -106,15 +136,7 @@ const Signup = () => {
                         }
                     </div>
                 </form>
-                <p className='text-white'>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
-                <div className="divider text-white">OR</div>
-                <button
-                    onClick={handleGoogleLogIn}
-                    className='btn btn-outline w-full'
-                >
-                    <FcGoogle className='text-2xl mx-2'></FcGoogle>
-                   <span className='text-blue-600 hover:text-white'> Google Login</span>
-                </button>
+                <p className='text-white'>Already have an account <Link className='text-blue-500' to="/login">Please Login</Link></p>
             </div>
         </section>
     );
