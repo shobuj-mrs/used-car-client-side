@@ -13,6 +13,7 @@ import Errorpage from "../../ErrorPage/Errorpage";
 import Home from "../../Home/Home/Home";
 import Login from "../../Login/Login";
 import Signup from "../../Signup/Signup";
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
 
 export const router = createBrowserRouter([
     {
@@ -47,8 +48,8 @@ export const router = createBrowserRouter([
     ,
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
         errorElement: <Errorpage></Errorpage>,
+        element: <PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
         children: [
             {
                 path: '/dashboard',
