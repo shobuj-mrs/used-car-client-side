@@ -11,7 +11,7 @@ const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://assignment-12-server-side-taupe.vercel.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

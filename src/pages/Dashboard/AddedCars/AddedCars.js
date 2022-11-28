@@ -7,7 +7,7 @@ const AddedCars = () => {
 
     const { user } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/allcars/${user?.email}`)
+        fetch(`https://assignment-12-server-side-taupe.vercel.app/allcars/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserCars(data);

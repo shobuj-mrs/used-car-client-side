@@ -38,7 +38,7 @@ const AddCars = () => {
 
         }
         console.log(allCars)
-        fetch('http://localhost:5000/allcars', {
+        fetch('https://assignment-12-server-side-taupe.vercel.app/allcars', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
