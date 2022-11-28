@@ -22,7 +22,7 @@ const AddCars = () => {
         const mobileNumber = data.mobileNumber;
         const email = user.email;
 
-        
+
 
         const allCars = {
             carName,
@@ -50,8 +50,8 @@ const AddCars = () => {
 
             })
 
-            toast.success('car added successfully')
-            
+        toast.success('car added successfully')
+
 
     }
 
@@ -73,15 +73,31 @@ const AddCars = () => {
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                         </div>
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">Sell Price</span></label>
-                            <input defaultValue={'$'} type="text" {...register("price", {
+                            <label className="label"> <span className="label-text">Car Photo URL</span></label>
+                            <input type="text" {...register("photoURL", {
+                                required: "Name is Required"
+                            })} className="input input-bordered w-full max-w-xs input-sm" />
+                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                        </div>
+
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"> <span className="label-text">Uses Time</span></label>
+                            <input type="text" {...register("usesTime", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                         </div>
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">Phone Number</span></label>
-                            <input defaultValue={'+880'} type="text" {...register("mobileNumber", {
+                            <label className="label"> <span className="label-text">Car Details</span></label>
+                            <input type="text" {...register("carDetails", {
+                                required: "Name is Required"
+                            })} className="input input-bordered w-full max-w-xs input-sm" />
+                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                        </div>
+
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"> <span className="label-text">Sell Price</span></label>
+                            <input defaultValue={'$'} type="text" {...register("price", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
@@ -94,27 +110,12 @@ const AddCars = () => {
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                         </div>
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">Car Details</span></label>
-                            <input type="text" {...register("carDetails", {
+                            <label className="label"> <span className="label-text">Phone Number</span></label>
+                            <input defaultValue={'+880'} type="text" {...register("mobileNumber", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                         </div>
-                        <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">Uses Time</span></label>
-                            <input type="text" {...register("usesTime", {
-                                required: "Name is Required"
-                            })} className="input input-bordered w-full max-w-xs input-sm" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
-                        </div>
-                        <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">Car Photo URL</span></label>
-                            <input type="text" {...register("photoURL", {
-                                required: "Name is Required"
-                            })} className="input input-bordered w-full max-w-xs input-sm" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
-                        </div>
-
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Select Your Car Condition</span></label>
                             <select
@@ -137,8 +138,6 @@ const AddCars = () => {
 
                             </select>
                         </div>
-
-
 
                         <div className="flex">
                             <input type="checkbox" className="border-green-600 " value="" />
