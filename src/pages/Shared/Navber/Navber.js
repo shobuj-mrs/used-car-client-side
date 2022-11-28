@@ -34,9 +34,10 @@ const Navber = () => {
         <nav className="w-full  bg-purple-500 shadow">
             <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                 <div>
-                    <div className="flex items-center justify-between md:block">
+                    
+                    <div className="flex items-center justify-between sm:ml-8  md:block">
                         <Link className='flex justify-center items-center' to={'/'}>
-                            <img className='w-16'
+                            <img className='w-16 '
                                 src="https://i.ibb.co/LnfwhdX/car-logo-preview.png" alt="" />
                             <h2 className='text-white font-semibold text-xl'>Car Buy&Sale</h2>
                         </Link>

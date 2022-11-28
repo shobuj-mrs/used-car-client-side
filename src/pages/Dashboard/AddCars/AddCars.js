@@ -1,14 +1,16 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 
+
 const AddCars = () => {
-  
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { user } = useContext(AuthContext);
-    const handleAdd = (data) => {
+    const handleToCarAdd = (data) => {
         const carName = data.carName;
         const carImg = data.photoURL;
         const carDetails = data.carDetails;
@@ -19,7 +21,9 @@ const AddCars = () => {
         const sellerLocation = data.carOwnerLocation;
         const mobileNumber = data.mobileNumber;
         const email = user.email;
+
         
+
         const allCars = {
             carName,
             salePrice,
@@ -31,7 +35,7 @@ const AddCars = () => {
             usesTime,
             email,
             carImg,
-            
+
         }
         console.log(allCars)
         fetch('http://localhost:5000/allcars', {
@@ -43,30 +47,33 @@ const AddCars = () => {
         })
             .then(res => res.json())
             .then(data => {
-                
+
             })
+
+            toast.success('car added successfully')
+            
 
     }
 
 
     return (
-        <div>
+        <section className='bg-gradient-to-r from-orange-50 to-red-100' >
 
-            <form onSubmit={handleSubmit(handleAdd)} className="w-full h-auto bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 p-4 flex items-center justify-center" >
+            <form onSubmit={handleSubmit(handleToCarAdd)} className="w-full shadow-2xl p-4 flex items-center justify-center" >
                 <div className="bg-white  rounded-2xl py-6 px-10 sm:max-w-md w-full backdrop-blur-sm bg-white/30 ">
-                    <div className="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-4">
+                    <div className="sm:text-3xl text-2xl font-semibold text-center text-purple-600  mb-4">
                         Enter car information
                     </div>
                     <div className="">
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">car Name</span></label>
+                            <label className="label"> <span className="label-text">Car Model</span></label>
                             <input type="text" {...register("carName", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                         </div>
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">Price</span></label>
+                            <label className="label"> <span className="label-text">Sell Price</span></label>
                             <input defaultValue={'$'} type="text" {...register("price", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
@@ -87,21 +94,21 @@ const AddCars = () => {
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                         </div>
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">car Details</span></label>
+                            <label className="label"> <span className="label-text">Car Details</span></label>
                             <input type="text" {...register("carDetails", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                         </div>
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">car Purchasing Year</span></label>
+                            <label className="label"> <span className="label-text">Uses Time</span></label>
                             <input type="text" {...register("usesTime", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                         </div>
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">car Picture</span></label>
+                            <label className="label"> <span className="label-text">Car Photo URL</span></label>
                             <input type="text" {...register("photoURL", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
@@ -109,7 +116,7 @@ const AddCars = () => {
                         </div>
 
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">Select car Condition</span></label>
+                            <label className="label"> <span className="label-text">Select Your Car Condition</span></label>
                             <select
                                 {...register("condition")}
                                 className=" select select-bordered select-sm w-full max-w-xs">
@@ -120,7 +127,7 @@ const AddCars = () => {
                             </select>
                         </div>
                         <div className="form-control w-full max-w-xs">
-                            <label className="label"> <span className="label-text">Select car Category</span></label>
+                            <label className="label"> <span className="label-text">Select Car Category</span></label>
                             <select
                                 {...register("carCategory")}
                                 className=" select select-bordered select-sm w-full max-w-xs">
@@ -131,10 +138,10 @@ const AddCars = () => {
                             </select>
                         </div>
 
-                      
+
 
                         <div className="flex">
-                            <input type="checkbox" className="border-blue-500 " value="" />
+                            <input type="checkbox" className="border-green-600 " value="" />
                             <div className="px-3 text-gray-500">
                                 I accept terms & conditions
                             </div>
@@ -148,7 +155,7 @@ const AddCars = () => {
                     </div>
                 </div>
             </form>
-        </div>
+        </section>
     );
 };
 
